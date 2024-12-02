@@ -26,6 +26,8 @@ def main(cfg: DictConfig) -> None:
         )
     infer_machine = infer_machine(cfg, eval_cases)
     infer_machine.infer()
+    new_output_upper   = infer_machine.output_upper
+    new_output_surface = infer_machine.output_surface
 
     # Prepare lat/lon
     data_gnrt = infer_machine.data_manager.data_gnrt
