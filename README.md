@@ -21,6 +21,11 @@ install NVIDIA modulus package
 ```
 git clone git@github.com:NVIDIA/modulus.git && cd modulus
 make install
+
+# if nvidia-modulus failed installation, it may ask to install the following package
+# follow the suggestion
+# pip install --extra-index-url https://pypi.nvidia.com/ nvidia-dali-cuda120
+# then back to the step `make install` above
 ```
 other packages
 ```
