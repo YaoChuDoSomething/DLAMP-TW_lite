@@ -13,8 +13,35 @@ LAND_SEA_MASK_PATH = "./assets/constant_masks/land_sea_mask.npy"
 TOPOGRAPHY_MASK_PATH = "./assets/constant_masks/topography_mask.npy"
 COUNTY_SHP_PATH = "./assets/town_shp/COUNTY_MOI_1090820.shp"
 STANDARDIZATION_PATH = "./assets/standardization.json"
-DATA_PATH = "/work/dong1128/rwrf/"
+DATA_PATH = "/wk2/rwf/"
 FIGURE_PATH = "./gallery/"
+
+# Evaluation cases
+EVAL_CASES = {
+    "dlamp": [
+        datetime(2022, 6, 6, 0, 0, 0),
+    ]
+}
+
+#    "one_day": [
+#        datetime(2022, 6, 4),  # ATS
+#        datetime(2022, 6, 24),  # ATS, observe graupel in Taipei
+#        datetime(2022, 8, 25),  # ATS
+#        datetime(2021, 8, 7),  # South-western flow + Tropical Depression
+#        datetime(2021, 8, 8),  # South-western flow
+#    ],
+#    "three_days": [
+#        # == harsh northward turning ==#
+#        # datetime(2022, 9, 3), # TC HINNAMNOR
+#        datetime(2022, 9, 12),  # TC MUIFA
+#        # datetime(2021, 7, 23), # TC IN-FA
+#        # == north-eastern wind accompanied ==#
+#        datetime(2022, 10, 16),  # TC NESAT
+#        # datetime(2022, 10, 31),  # TC NALGAE
+#        # == pass by northern Taiwan ==#
+#        datetime(2020, 8, 3),  # TC HAGUPIT
+#    ],
+#}
 
 # Radar color bar
 DBZ_LV = np.arange(0, 66, 1)
@@ -261,25 +288,3 @@ TEMP_COLOR = [
     "#c8250a",
     "#c8250a",
 ]
-
-# Evaluation cases
-EVAL_CASES = {
-    "one_day": [
-        datetime(2021, 6, 4),  # ATS
-        datetime(2022, 6, 24),  # ATS, observe graupel in Taipei
-        datetime(2022, 8, 25),  # ATS
-        datetime(2021, 8, 7),  # South-western flow + Tropical Depression
-        datetime(2021, 8, 8),  # South-western flow
-    ],
-    "three_days": [
-        # == harsh northward turning ==#
-        # datetime(2022, 9, 3), # TC HINNAMNOR
-        datetime(2022, 9, 12),  # TC MUIFA
-        # datetime(2021, 7, 23), # TC IN-FA
-        # == north-eastern wind accompanied ==#
-        datetime(2022, 10, 16),  # TC NESAT
-        # datetime(2022, 10, 31),  # TC NALGAE
-        # == pass by northern Taiwan ==#
-        datetime(2020, 8, 3),  # TC HAGUPIT
-    ],
-}
