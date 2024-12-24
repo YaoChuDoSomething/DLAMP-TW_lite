@@ -36,6 +36,7 @@ def prediction_postprocess(
     Returns:
         defaultdict: Processed predictions in shape: {product_type: (B, lv, h, w, c)...}
     """
+    print('prediction_postprocess()')
     predictions = defaultdict(list)
     for epoch_id in range(len(trainer_output)):
         for key, value in mapping.items():
@@ -50,12 +51,14 @@ def prediction_postprocess(
 
 
 def ort_instance_decorator(func):
+    print('ort_instance_decorator()')
     onnx_path = None
     gpu_id = None
 
     @wraps(func)
     def wrapper(**kwargs) -> ort.InferenceSession | partial:
         nonlocal onnx_path, gpu_id
+        print('wrapper()')
         if "onnx_path" in kwargs:
             onnx_path = kwargs["onnx_path"]
         if "gpu_id" in kwargs:
@@ -77,6 +80,7 @@ def ort_instance_decorator(func):
 
 @ort_instance_decorator
 def init_ort_instance(gpu_id: int, onnx_path: str) -> ort.InferenceSession:
+    print('init_ort_instance()')
     assert "CUDAExecutionProvider" in ort.get_available_providers()
 
     # An issue about onnxruntime for cuda12.x
@@ -84,6 +88,7 @@ def init_ort_instance(gpu_id: int, onnx_path: str) -> ort.InferenceSession:
     _default_session_options = ort.capi._pybind_state.get_default_session_options()
 
     def get_default_session_options_new():
+        print('get_default_session_options_new()')
         _default_session_options.inter_op_num_threads = 1
         _default_session_options.intra_op_num_threads = 1
         return _default_session_options
@@ -107,6 +112,7 @@ def init_ort_instance(gpu_id: int, onnx_path: str) -> ort.InferenceSession:
 def load_pangu_model(
     ckpt_path: str, data_list: list[DataCompose]
 ) -> Callable[[torch.device], nn.Module]:
+    print('load_pangu_model')
     with open("./config/model/pangu_rwrf.yaml") as stream:
         cfg_model = yaml.safe_load(stream)
     with open("./config/lightning/pangu_rwrf.yaml") as stream:

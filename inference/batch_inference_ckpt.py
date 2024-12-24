@@ -55,9 +55,7 @@ class BatchInferenceCkpt(InferenceBase):
 
         log.info(f"Batch inference finished at {datetime.now()}")
 
-    def get_figure_materials(
-        self, case_dt: datetime, data_compose: DataCompose
-    ) -> tuple[np.ndarray, np.ndarray]:
+    def get_figure_materials(self, case_dt: datetime, data_compose: DataCompose) -> tuple[np.ndarray, np.ndarray]:
         """
         Retrieves the target and output data from a given case initial time.
 
@@ -90,7 +88,7 @@ class BatchInferenceCkpt(InferenceBase):
 
     def get_infer_outputs_from_dt(
         self, dt: datetime, phase: str, data_compose: DataCompose
-    ) -> torch.Tensor:
+        ) -> torch.Tensor:
         time_idx = self.init_time.index(dt)
         if data_compose.level.is_surface():
             var_idx = self.surface_vars.index(data_compose.var_name)

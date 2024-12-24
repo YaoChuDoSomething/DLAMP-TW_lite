@@ -15,6 +15,7 @@ log = logging.getLogger(__name__)
 
 class BatchInferenceOnnx(InferenceBase):
     def __init__(self, cfg: DictConfig, eval_cases: list[datetime] | None = None):
+        print('inference/batch_inference_onnx.py')
         """
         This class can only inference by onnx runtime.
         """
@@ -46,6 +47,7 @@ class BatchInferenceOnnx(InferenceBase):
             The number of iterations and storage interval are determined by
             `self.output_itv` and `self.showcase_length` respectively.
         """
+        print('inference/batch_inference_onnx.py infer()')
         data_loader = self.data_manager.predict_dataloader()
         predict_iters = self.output_itv.seconds // 3600
         assert (

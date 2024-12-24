@@ -10,6 +10,7 @@ from src.utils import DataCompose, DataType, Level
 
 class InferenceBase(metaclass=abc.ABCMeta):
     def __init__(self, cfg: DictConfig, eval_cases: list[datetime] | None = None):
+        print('inference/inference_base.py  __init__()')
         # args
         self.cfg = cfg
         self.eval_cases = eval_cases
@@ -57,6 +58,7 @@ class InferenceBase(metaclass=abc.ABCMeta):
             ValueError: If the sanity check fails for the initial time or forecast time.
 
         """
+        print('inference/inference_base.py => build_init_time_list()')
         if self.eval_cases is None:
             warnings.warn(
                 "No custom eval cases are provided, using default EVAL_CASES defined in `src.const`.",
@@ -87,6 +89,8 @@ class InferenceBase(metaclass=abc.ABCMeta):
         """
         If adding additional initial times to `init_time` list, override this function.
         """
+        print('inference/inference_base.py => showcase_init_time_list()')
+        print( [case_dt] )
         return [case_dt]
 
     @property
@@ -95,6 +99,7 @@ class InferenceBase(metaclass=abc.ABCMeta):
         Since `self.init_time_list` is not always available, this function returns default init times
         used by CustomDataset from `self.data_manager` or `self.init_time_list`
         """
+        print('inference/inference_base.py => init_time()')
         return (
             self.init_time_list
             if self.init_time_list is not None
@@ -106,6 +111,7 @@ class InferenceBase(metaclass=abc.ABCMeta):
         """
         Prepare all necessary objects for inference when calling `__init__`.
         """
+        print('inference/inference_base.py => _setup()')
         return NotImplemented
 
     @abc.abstractmethod
@@ -113,4 +119,5 @@ class InferenceBase(metaclass=abc.ABCMeta):
         """
         Inference process.
         """
+        print('inference/inference_base.py => infer()')
         return NotImplemented
